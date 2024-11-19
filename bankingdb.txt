@@ -1,0 +1,41 @@
+CREATE DATABASE bankingdb;
+
+SHOW DATABASES;
+USE bankingdb;
+
+CREATE TABLE users (
+    id INT NOT NULL AUTO_INCREMENT,
+    username VARCHAR(30) NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE transactions (
+    id INT NOT NULL AUTO_INCREMENT,
+    from_user INT NOT NULL,
+    to_user INT NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    transaction_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    FOREIGN KEY (from_user) REFERENCES users(id),
+    FOREIGN KEY (to_user) REFERENCES users(id)
+);
+
+
+INSERT INTO users (username, amount) VALUES ('Alice', 1000.00);
+INSERT INTO users (username, amount) VALUES ('Bob', 500.00);
+INSERT INTO users (username, amount) VALUES ('Charlie', 750.00);
+INSERT INTO users (username, amount) VALUES ('David', 1200.00);
+INSERT INTO users (username, amount) VALUES ('Eva', 300.00);
+INSERT INTO users (username, amount) VALUES ('Frank', 400.00);
+
+INSERT INTO transactions (from_user, to_user, amount) VALUES (1, 2, 150.00);
+INSERT INTO transactions (from_user, to_user, amount) VALUES (2, 3, 200.00);
+INSERT INTO transactions (from_user, to_user, amount) VALUES (3, 1, 100.00);
+INSERT INTO transactions (from_user, to_user, amount) VALUES (1, 4, 300.00);
+INSERT INTO transactions (from_user, to_user, amount) VALUES (4, 5, 50.00); 
+INSERT INTO transactions (from_user, to_user, amount) VALUES (5, 6, 100.00);
+INSERT INTO transactions (from_user, to_user, amount) VALUES (2, 1, 75.00); 
+INSERT INTO transactions (from_user, to_user, amount) VALUES (6, 3, 200.00);
+INSERT INTO transactions (from_user, to_user, amount) VALUES (3, 5, 150.00);
+INSERT INTO transactions (from_user, to_user, amount) VALUES (4, 1, 500.00);

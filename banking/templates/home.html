@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}
+Bankify - Home
+{% endblock %}
+
+{% block content %}
+<section class="container-fluid">
+    <h1>Willkommen {{username | safe }}!</h1>
+    <div class="block">
+        <h3>Dein Kontostand beträgt</h3>
+        <span class="amount">{{person[0].amount}}€</span>
+    </div>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Date</th>
+            <th scope="col">Amount</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for trans in transactions %}
+                <tr>
+                    <th scope="row">{{trans.id}}</th>
+                    <td>{{trans.date}}</td>
+                    <td class="amount">{{trans.amount}}</td>
+                    <td>{{trans.from}}</td>
+                    <td>{{trans.to}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+</section>
+{% endblock%}
