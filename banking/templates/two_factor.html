@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Bankify - 2FA Verification
+{% endblock %}
+
+{% block content %}
+<section class="container">
+    <h4>Enter the 2FA Code</h4>
+    <form method="POST" action="/two_factor">
+        <div class="form-group">
+            <label for="totp_code">Enter the code from your authenticator app</label>
+            <input type="text" id="totp_code" name="totp_code" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Verify</button>
+    </form>
+
+    {% if error %}
+        <div class="alert alert-danger mt-3">{{ error }}</div>
+    {% endif %}
+</section>
+{% endblock %}
+
